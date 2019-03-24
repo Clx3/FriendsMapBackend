@@ -1,5 +1,7 @@
 package fi.tuni.friendsmap.controller;
 
+import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.List;
 
 import javax.naming.AuthenticationException;
@@ -42,10 +44,33 @@ public class UserController {
 		}
 	}
 	
-	@RequestMapping(value = "users/", method = RequestMethod.PUT)
-	public String saveUserAndLocation(@RequestBody String requestJson) {
-		return null;
+	@RequestMapping(value = "users/", method = RequestMethod.POST)
+	public User saveUser(@RequestBody User user) {
+		User currentUser = userRepo.findById(user.getId());
+		
+		currentUser.setLatitude(round(user.getLatitude(), 6));
+		currentUser.setLongitude(round(user.getLongitude(), 6));
+		currentUser.setLocationInfo(user.getLocationInfo());
+		
+		userRepo.save(currentUser);
+		
+		return currentUser;
 	}
+	
+	/**
+	 * TODO: MOVE THIS SOMEWHERE
+	 * @param value
+	 * @param places
+	 * @return
+	 */
+	public static double round(double value, int places) {
+	    if (places < 0) throw new IllegalArgumentException();
+
+	    BigDecimal bd = new BigDecimal(value);
+	    bd = bd.setScale(places, RoundingMode.HALF_UP);
+	    return bd.doubleValue();
+	}
+
 	
 	@RequestMapping(value = "users/login", method = RequestMethod.POST)
 	public User login(@RequestBody User user) throws UserAuthenticationException {
