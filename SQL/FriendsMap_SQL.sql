@@ -10,3 +10,5 @@ CREATE TABLE user (
     locationInfo VARCHAR(500),
     PRIMARY KEY (id)
 );
+
+INSERT INTO user VALUES(1, 'teemu', 65.4324, 66.243252, '');
