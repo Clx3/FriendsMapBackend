@@ -23,12 +23,28 @@ public class User {
 	@Column(name="username")
 	private String username;
 	
+	@Column(name="longitude")
+	private double longitude;
+	
+	@Column(name="latitude")
+	private double latitude;
+	
+	@Column(name="locationInfo")
+	private String locationInfo;
+	
 	public User() {}
-	
-	public User(String username) {
+
+	public User(String username, double longitude, double latitude, String locationInfo) {
 		this.username = username;
+		this.longitude = longitude;
+		this.latitude = latitude;
+		this.locationInfo = locationInfo;
 	}
-	
+
+	public void setLocationInfo(String locationInfo) {
+		this.locationInfo = locationInfo;
+	}
+
 	public long getId() {
 		return id;
 	}
@@ -39,6 +55,26 @@ public class User {
 
 	public void setUsername(String username) {
 		this.username = username;
-	}	
+	}
+	
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getLocationInfo() {
+		return locationInfo;
+	}
 	
 }

@@ -40,7 +40,11 @@ public class UserController {
 		} catch(DataIntegrityViolationException  e) {
 			throw new UsernameAlreadyTakenException("Username is already in use!");			
 		}
-		
+	}
+	
+	@RequestMapping(value = "users/", method = RequestMethod.PUT)
+	public String saveUserAndLocation(@RequestBody String requestJson) {
+		return null;
 	}
 	
 	@RequestMapping(value = "users/login", method = RequestMethod.POST)
