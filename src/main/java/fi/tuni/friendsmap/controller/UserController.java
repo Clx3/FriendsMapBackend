@@ -50,8 +50,11 @@ public class UserController {
 			
 			if(userFromDatabase == null)
 				throw new UserAuthenticationException("User " + user.getUsername() + " not found.");
-		
+			else 
+				return userFromDatabase;
+					
 		}
+		/* Hmm... */
 		return null;
 	}
 	
