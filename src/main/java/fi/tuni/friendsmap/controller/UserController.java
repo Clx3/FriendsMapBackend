@@ -57,13 +57,13 @@ public class UserController {
 		return currentUser;
 	}
 	
-	@RequestMapping(value = "users/deletelocations", method = RequestMethod.POST)
+	@RequestMapping(value = "users/deletelocation", method = RequestMethod.POST)
 	public User deleteUsersLocation(@RequestBody User user) {
 		User currentUser = userRepo.findById(user.getId());
 		
 		if(currentUser != null) {
-			currentUser.setLatitude(-1);
-			currentUser.setLongitude(-1);
+			currentUser.setLatitude(-1000);
+			currentUser.setLongitude(-1000);
 			currentUser.setLocationInfo("");
 		}
 		
